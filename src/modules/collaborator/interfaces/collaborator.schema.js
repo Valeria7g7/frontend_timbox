@@ -10,13 +10,13 @@ export const collaboratorSchema=z.object({
 
     tax_domicile:z.string().min(2,{message:"El Domicilio fiscal es requerido"}),
     curp:z.string().min(18,{message:"La curp es requerida"}).max(18,{message:"La curp o debe tener mas de 18 caracteres"}),
-    nss:z.string().min(11,{message:"El NSS es requerido"}).max(11,{message:"El NSS no debe tener mas de 11 caracteres"}),
+nss: z.string().regex(/^\d{11}$/, { message: "El NSS debe contener exactamente 11 dígitos"    }),
     employment_start_date:z.string().min(6,{message:"La fecha es requerida"}),
     contract_type:z.string().min(2,{message:"El tipo de contrato es requerido"}),
     departament:z.string().min(2,{message:"El departamento es requerido"}),
     position:z.string().min(2,{message:"El puesto es requerido"}),
-    dayli_wage:z.string().min(2,{message:"El salario diario es requerido"}),//salaroo diario
-    salary:z.string().min(2,{message:"El salario es requerido"}),
+    dayli_wage:z.number().min(2,{message:"El salario diario es requerido"}),//salaroo diario
+    salary:z.number(11,{message:"La cantidad debe ser numerica"}).min(2,{message:"El salario es requerido"}),
     entity_code:z.string().min(2,{message:"El codigo de entidad es requerido"}),//clave de entidad
     state:z.string().min(3,{message:"El estado es requerido"}),
 

@@ -272,7 +272,7 @@ export const CollaboratorCreate = () => {
 
                                         id="dayli_wage"
 
-                                        {...register("dayli_wage")}
+                                        {...register("dayli_wage",{valueAsNumber:true})}
                                         className={`${errors.dayli_wage ? 'border-red-500' : ''}`}
                                     />
                                     {errors.dayli_wage && (
@@ -287,11 +287,11 @@ export const CollaboratorCreate = () => {
                                         Salario <span className="text-red-500">*</span>
                                     </label>
                                     <Input
-                                        type="text"
+                                        type="number"
                                         maxLength={13}
                                         id="salary"
 
-                                        {...register("salary")}
+                                        {...register("salary",{valueAsNumber:true})}
                                         className={`${errors.salary ? 'border-red-500' : ''}`}
                                     />
                                     {errors.salary && (
