@@ -69,18 +69,13 @@ export const FileCreate = ({ isOpen, onClose, mode = Actions.CREATE, entity, set
                                     accept='.pdf,xlsx'
                                     onChange={(e) => {
                                         const selectedFile = e.target.files[0];
-                                        console.log(selectedFile);
                                         setFile(selectedFile);
                                     }}
                                     value={file?.name}
                                     className={`${false ? 'border-red-500' : ''}`}
                                 />
                                 <p>{file?.name}</p>
-                                {/* {errors.title && (
-                                    <p className="text-red-600 dark:text-red-400 text-xs mt-1 font-medium">
-                                        {errors.title.message}
-                                    </p>
-                                )} */}
+                                
                             </div>
 
 

@@ -5,7 +5,7 @@ export const MainLayout=()=>{
     return(
         <div className="min-h-screen flex flex-col md:flex-row">
             <Menu/>
-            <div className="flex-1 p-5">
+            <div className="flex-1">
                 <Outlet/>
             </div>
         </div>

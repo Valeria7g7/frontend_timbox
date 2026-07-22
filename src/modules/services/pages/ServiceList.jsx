@@ -12,38 +12,35 @@ import { serviceService } from "../services/serviceService";
 import { ServiceCreate } from "../components/ServiceCreate";
 import { Actions } from "@/interfaces/interface";
 export const ServiceList = () => {
-  const navigate = useNavigate();
-   const [openModal, setOpenModal]=useState(false)
-   const [mode,setMode]=useState(Actions.CREATE)
-  
+  const [openModal, setOpenModal] = useState(false)
+  const [mode, setMode] = useState(Actions.CREATE)
+
   const [entities, setEntities] = useState([]);
   const [isLoading, setIsLoading] = useState(false)
   const [showConfirmation, setShowConfirmation] = useState(false)
   const [ent, setEntity] = useState()
-  const [searchValue, setSearchValue] = useState('')
-  const [searchWithDate, setSearchValueWithDate] = useState('')
 
   useEffect(() => {
     getAll()
   }, [])
-   
 
- useEffect(()=>{
-replace()
 
- },[ent])
-  const replace=async()=>{
-if(mode===Actions.UPDATE){
-setEntities(previous =>
-    previous.map(currentEntity =>
-        currentEntity.id === ent.id
+  useEffect(() => {
+    replace()
+
+  }, [ent])
+  const replace = async () => {
+    if (mode === Actions.UPDATE) {
+      setEntities(previous =>
+        previous.map(currentEntity =>
+          currentEntity.id === ent.id
             ? ent
             : currentEntity
-    ))
-  }
-  if(mode===Actions.CREATE){
-setEntities(previus=>[ent,...previus])
-  }
+        ))
+    }
+    if (mode === Actions.CREATE) {
+      setEntities(previus => [ent, ...previus])
+    }
 
 
   }
@@ -74,7 +71,7 @@ setEntities(previus=>[ent,...previus])
       setShowConfirmation(falase)
     }
   }
-  
+
   return (
     <div className="p-6 bg-gray-100 min-h-full">
       <div className="max-w-5xl mx-auto bg-white shadow-md rounded-xl p-6">
@@ -88,15 +85,15 @@ setEntities(previus=>[ent,...previus])
           </h1>
         </div>
 
-       <div className="flex justify-end"><Button  className="bg-purple-500" onClick={()=>{setOpenModal(true)}}>+ Nueva Publicacion</Button> </div>
-        <div className="w-full flex justify-end"><Button className="w-1/10" onClick={() => { getAll() }}><Search></Search></Button></div>
-        <div className="overflow-x-auto">
-          <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
-            <thead className="bg-gray-200 text-gray-700">
+        <div className="flex justify-end"><Button className="bg-purple-500" onClick={() => { setOpenModal(true) ,setMode(Actions.CREATE)}}>+ Nueva Publicación</Button> </div>
+        <div className="w-full flex justify-end"><Button className="w-1/10 bg-blue-700" onClick={() => { getAll() }}><Search></Search>Buscar</Button></div>
+       <div className="overflow-x-auto max-h-[70vh] overflow-y-auto border rounded-lg">
+          <table className="min-w-full">
+            <thead className="sticky top-0 z-10 bg-gray-200 text-gray-700">
               <tr>
                 <th className="px-4 py-3 text-left border-b">Titulo</th>
                 <th className="px-4 py-3 text-left border-b">Descripcion</th>
-                
+
                 <th className="px-4 py-3 text-left border-b">Acciones</th>
 
               </tr>
@@ -106,20 +103,22 @@ setEntities(previus=>[ent,...previus])
                 <tr key={entity?.id}>
                   <td className="px-4 py-3">{entity?.title}</td>
                   <td className="px-4 py-3">{entity?.body}</td>
-                 
+
                   <td className="px-4 py-3">
                     <div className="flex ">
-                      <Button onClick={() => {
+                      <Button
+                      className=' w-12 h-12 group bg-white hover:bg-white shadow-none ' 
+                       onClick={() => {
                         setEntity(entity)
                         setOpenModal(true)
                         setMode(Actions.UPDATE)
-                       
+
                       }
-                      }><Pencil /></Button>
-                      <Button onClick={() => {
+                      }><Pencil className="w-6 h-6 text-yellow-400 transition-colors group-hover:text-yellow-700"/></Button>
+                      <Button className="group bg-white hover:bg-white shadow-none  w-12 h-12" onClick={() => {
                         setEntity(entity)
                         setShowConfirmation(true)
-                      }} ><Trash2 /></Button></div>
+                      }} ><Trash2 className="text-red-500 w-6 h-6 transition-colors group-hover:text-red-800" /></Button></div>
                   </td>
 
                 </tr>
@@ -130,9 +129,9 @@ setEntities(previus=>[ent,...previus])
 
         </div>
 
-       {openModal&&(
-       < ServiceCreate isOpen={openModal}  onClose={()=>{setOpenModal(false)}} mode={mode} entity={ent} setEntity={setEntity}/>
-       )}
+        {openModal && (
+          < ServiceCreate isOpen={openModal} onClose={() => { setOpenModal(false) }} mode={mode} entity={ent} setEntity={setEntity} />
+        )}
 
         {entities.length == 0 && (
           <div className="border border-border rounded-lg p-6">

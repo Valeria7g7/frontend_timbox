@@ -55,17 +55,18 @@ export const ServiceCreate = ({ isOpen, onClose, mode = Actions.CREATE, entity, 
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className='max-w-2xl'>
+            <DialogContent className="w-[90vw] max-w-5xl max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle> {mode === Actions.CREATE ? 'Crear Nueva Publicacion' : 'Editar Publicacion'}</DialogTitle>
                     <DialogDescription>
-                        Completa el formulario para guardar una nueva publicacion
+                        {mode === Actions.CREATE ? 'Completa el formulario para guardar una nueva publicacion' : 'Editar Publicacion'}
+        
                     </DialogDescription>
                 </DialogHeader>
 
                 <div className="p-8">
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 gap-6">
 
 
                             <div>

@@ -89,7 +89,6 @@ setEntities(previus=>[ent,...previus])
         </div>
 
        <div className="flex justify-end"><Button  className="bg-purple-500" onClick={()=>{setOpenModal(true)}}>+ Nuevo registro</Button> </div>
-        <div className="w-full flex justify-end"><Button className="w-1/10" onClick={() => { getAll() }}><Search></Search></Button></div>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
             <thead className="bg-gray-200 text-gray-700">
@@ -110,17 +109,11 @@ setEntities(previus=>[ent,...previus])
 
                   <td className="px-4 py-3">
                     <div className="flex ">
-                      {/* <Button onClick={() => {
-                        setEntity(entity)
-                        setOpenModal(true)
-                        setMode(Actions.UPDATE)
-                       
-                      }
-                      }><Pencil /></Button> */}
-                      <Button onClick={() => {
+                     
+                      <Button className="group bg-white hover:bg-white shadow-none  w-12 h-12"  onClick={() => {
                         setEntity(entity)
                         setShowConfirmation(true)
-                      }} ><Trash2 /></Button></div>
+                      }} ><Trash2  className="text-red-500 w-6 h-6 transition-colors group-hover:text-red-800" /></Button></div>
                   </td>
 
                 </tr>

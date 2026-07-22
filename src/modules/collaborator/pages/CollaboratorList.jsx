@@ -66,7 +66,7 @@ export const CollaboratorList = () => {
         </div>
         <div className="w-full flex"><Input  type="date" className="w-9/10" value={searchWithDate} onKeyDown={(e) => { if (e.key === 'Enter') { search() } }} onChange={(e) => { setSearchValueWithDate(e.target.value) }} /></div>
 
-        <div className="w-full flex"><Input className="w-9/10" value={searchValue} onKeyDown={(e) => { if (e.key === 'Enter') { search() } }} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Buscar por CURP, RFC o Nombre" /><Button className="w-1/10" onClick={() => { search() }}><Search></Search></Button></div>
+        <div className="w-full flex"><Input className="w-9/10" value={searchValue} onKeyDown={(e) => { if (e.key === 'Enter') { search() } }} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Buscar por CURP, RFC o Nombre" /><Button className="w-1/10 bg-blue-700" onClick={() => { search() }}><Search></Search>Buscar</Button></div>
         <div className="overflow-x-auto">
           <table className="min-w-full border border-gray-300 rounded-lg overflow-hidden">
             <thead className="bg-gray-200 text-gray-700">

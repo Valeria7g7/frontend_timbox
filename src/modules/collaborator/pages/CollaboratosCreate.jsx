@@ -10,8 +10,10 @@ import { useNavigate } from "react-router-dom";
 import { collaboratorSchema, states } from "../interfaces/collaborator.schema";
 import { collaboratorService } from "../services/collaboratorService";
 import { useParams, useLocation } from "react-router-dom";
+import { Actions } from "@/interfaces/interface";
 export const CollaboratorCreate = () => {
-    const [action, setAction] = useState('CREATE')
+    const [action, setAction] = useState(Actions.CREATE)
+    const [loading,setIsLoading]=useState(false)
     const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors }, reset } = useForm({
         resolver: zodResolver(collaboratorSchema),
@@ -21,7 +23,7 @@ export const CollaboratorCreate = () => {
     const collaborator = location.state?.collaborator;
     useEffect(() => {
         if (collaborator) {
-            setAction('UPDATE')
+            setAction(Actions.UPDATE)
             reset({
                 name: collaborator?.name,
                 email: collaborator?.email,
@@ -42,17 +44,16 @@ export const CollaboratorCreate = () => {
         }
     }, [])
     const onSubmit = async (data) => {
+        setIsLoading(true)
         try {
-            if (action == 'CREATE') {
-                console.log("action :", action)
+            if (action == Actions.CREATE) {
                 await collaboratorService.create(data)
                 toast.success('¡Colaborador creado exitosamente!', {
                     duration: 4000,
                     position: 'top-right',
                 })
             }
-            if (action == 'UPDATE') {
-                console.log("vamos a actualizr")
+            if (action == Actions.UPDATE) {
                 await collaboratorService.update(collaborator?.id, data)
                 toast.success('¡Colaborador actualizado exitosamente!', {
                     duration: 4000,
@@ -67,20 +68,17 @@ export const CollaboratorCreate = () => {
                 position: 'top-right',
             })
         }
+        finally{
+            setIsLoading(false)
+        }
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-12">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-1">
             <div className="w-full max-w-2xl">
-                <div className="text-center mb-8">
-                    <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-2">
-                        Registra un nuevo colaborador
-                    </h1>
-                </div>
-
                 <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700">
                     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-8">
-                        <p className="text-white text-center font-semibold text-lg">Completa el siguiente formulario</p>
+                        <p className="text-white text-center font-semibold text-lg">{action==Actions.CREATE?'Completa el siguiente formulario':'Modifica los datos.'}</p>
                     </div>
 
                     <div className="p-8">
@@ -349,7 +347,7 @@ export const CollaboratorCreate = () => {
                                 type="submit"
                                 className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-2 rounded-lg transition duration-200 mt-6"
                             >
-                                {action == 'CREATE' ? 'Registrar colaborador' : 'Actualizar colaborador'}
+                                {!loading?(action == 'CREATE' ? 'Registrar colaborador' : 'Actualizar colaborador'):'Guardando'}
                             </Button>
                         </form>
                     </div>
