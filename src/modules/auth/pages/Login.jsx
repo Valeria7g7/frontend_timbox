@@ -84,9 +84,14 @@ export const Login = ()=>{
                         <Button type="submit" className="w-full" disabled={loading}>
                             {loading ? 'Ingresando...' : 'Ingresar'}
                         </Button>
+                        <div className="flex flex-col gap-2">
                           <a href="/register" className="text-blue-600 font-semibold hover:text-blue-800 transition">
                             ¿No tienes cuenta? Regístrate aquí
                         </a>
+                        <a href="/recover" className="ms-2 text-red-600 font-semibold hover:text-red-800 transition">
+                            Olvide mi contraseñaaass
+                        </a>
+                        </div>
                     </form>
                 </CardContent>
             </Card>

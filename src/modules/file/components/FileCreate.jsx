@@ -18,9 +18,11 @@ export const FileCreate = ({ isOpen, onClose, mode = Actions.CREATE, entity, set
         try {
             setIsLoading(true)
             if (mode === Actions.CREATE) {
+                const formData=new FormData();
+                formData.append("file",file);
                 arrayData.file_name=file.name
                 arrayData.extension=file.type.split('/')[1]
-                const response = await fileService.create(arrayData)
+                const response = await fileService.create(formData)
                 onClose()
                  setEntity(response.data)
  

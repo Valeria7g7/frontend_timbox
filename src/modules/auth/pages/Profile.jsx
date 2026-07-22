@@ -58,7 +58,9 @@ export const Profile = () => {
         }
     }
     try{
-       await userService.update(data,user.id)
+       const response=await userService.update(data,user.id)
+        localStorage.setItem("user", JSON.stringify(response.data));
+
        toast.success('Tus datos se actualizaron correctamente',{
         duration:4000,
         position:"top-right"

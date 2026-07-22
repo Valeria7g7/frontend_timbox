@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { LoadingComponent } from "@/components/LoadingComponente";
 import { NoData } from "@/components/NoData";
 import { Button } from "@/components/ui/button";
-import { Trash2, Pencil } from "lucide-react"
+import { Trash2, Pencil, Eye } from "lucide-react"
 import toast from "react-hot-toast";
 import { Confirmation } from "@/components/Confirmation";
 import { useNavigate } from "react-router-dom";
@@ -113,7 +113,14 @@ setEntities(previus=>[ent,...previus])
                       <Button className="group bg-white hover:bg-white shadow-none  w-12 h-12"  onClick={() => {
                         setEntity(entity)
                         setShowConfirmation(true)
-                      }} ><Trash2  className="text-red-500 w-6 h-6 transition-colors group-hover:text-red-800" /></Button></div>
+                      }} ><Trash2  className="text-red-500 w-6 h-6 transition-colors group-hover:text-red-800" /></Button>
+                      </div>
+                      <div className="flex ">
+                     
+                      <Button className="group bg-white hover:bg-white shadow-none  w-12 h-12"  onClick={() => {
+                        window.open( `${import.meta.env.VITE_API_URL_ROUTE}${entity.file_path}`)
+                      }} ><Eye  className="text-red-500 w-6 h-6 transition-colors group-hover:text-red-800" /></Button>
+                      </div>
                   </td>
 
                 </tr>

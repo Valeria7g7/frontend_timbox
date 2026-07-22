@@ -8,6 +8,7 @@ import { UsersList } from "@/modules/user/pages/UsersList";
 import { CollaboratorCreate } from "@/modules/collaborator/pages/CollaboratosCreate";
 import { ServiceList } from "@/modules/services/pages/ServiceList";
 import { FileList } from "@/modules/file/pages/FileList";
+import { RecoverPassword } from "@/modules/auth/pages/RecoverPassword";
 export const AppRoutes = () => {
     return (
         <BrowserRouter>
@@ -16,6 +17,7 @@ export const AppRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/recover" element={<RecoverPassword />} />
 
                 <Route element={<MainLayout />}>
                     <Route path="/users" element={<UsersList />} />

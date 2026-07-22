@@ -9,5 +9,12 @@ export const authService={
     me(){
         const user = JSON.parse(localStorage.getItem("user"));
         return api.get(`/auth/me/${user.id}`)
+    
+},
+recoveryMyPassword:async(data)=>{
+    const response= await api.post("/auth/recovery",data)
+
+    return response;
+    
     }
 }

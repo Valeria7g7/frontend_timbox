@@ -1,7 +1,10 @@
 import {api} from "@/api/api"
+import axios from "axios"
 export const fileService={
-    create:async(data)=>{
-        return await api.post("/file",data)
+    create:async(formData)=>{
+       return  await api.post("/file", formData, { headers: {   "Content-Type": "multipart/form-data"}})
+  
+       // return await api.post("/file",data)
     },
     getAll:async()=>{
         return await api.get("/file")

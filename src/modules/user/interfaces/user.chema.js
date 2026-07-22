@@ -15,7 +15,7 @@ export const userSchema=z.object({
     path:["password_confirmation"],
 })
 
-//para la actualizacion usamos este schema
+//para la actualizacion de datos del user usamos este schema
 export const userUpdateSchema=z.object({
     name:z.string().min(4,{message:"El nombre es requerido"}).max(50),
     email:z.string().min(4,{message:"El correo es requerido"}).email({message:"El correo no es valido"}),
@@ -24,3 +24,4 @@ export const userUpdateSchema=z.object({
         message:"El RFC debe tener minimo 12 y maximo 13 caracteres"
     }),
 })
+
